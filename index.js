@@ -24,6 +24,12 @@ app.post("/signup", async (req, res) => {
   try {
     const { name, mail, password, confirmPassword } = req.body;
 
+    if (name || mail || password || confirmPassword === "") {
+      return res
+        .status(400)
+        .send(`please provide name, mail, password and confirm password`);
+    }
+
     let existed = await Users.findOne({ mail });
     if (existed) {
       return res.status(400).send(`user already existed with ${mail} gmail`);

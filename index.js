@@ -24,7 +24,7 @@ app.post("/signup", async (req, res) => {
   try {
     const { name, mail, password, confirmPassword } = req.body;
 
-    if (name || mail || password || confirmPassword === "") {
+    if (name || mail || password || confirmPassword === ("" || undefined)) {
       return res
         .status(400)
         .send(`please provide name, mail, password and confirm password`);

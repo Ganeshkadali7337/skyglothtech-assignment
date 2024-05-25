@@ -20,13 +20,9 @@ mongoose
   .connect("mongodb+srv://ganesh:ganesh@cluster7337.7exrzd7.mongodb.net/")
   .then(() => console.log("db connected..."));
 
-app.post("/register", async (req, res) => {
+app.post("/signup", async (req, res) => {
   try {
-    const { name, mail, password, confirmPassword, age } = req.body;
-
-    if (isNaN(age)) {
-      return res.status(400).send("please provide valid age");
-    }
+    const { name, mail, password, confirmPassword } = req.body;
 
     let existed = await Users.findOne({ mail });
     if (existed) {
@@ -43,7 +39,6 @@ app.post("/register", async (req, res) => {
       name,
       mail,
       password: hashedPassword,
-      age,
     });
 
     await newUser.save();

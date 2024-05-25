@@ -14,10 +14,6 @@ const Users = mongoose.Schema({
     type: String,
     required: true,
   },
-  age: {
-    type: String,
-    required: true,
-  },
 });
 
 module.exports = mongoose.model("userProfiles", Users);

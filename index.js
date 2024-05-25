@@ -24,10 +24,20 @@ app.post("/signup", async (req, res) => {
   try {
     const { name, mail, password, confirmPassword } = req.body;
 
-    if (name || mail || password || confirmPassword === undefined) {
-      return res
-        .status(400)
-        .send(`please provide name, mail, password and confirm password`);
+    if (name === undefined || name === "") {
+      return res.status(400).send(`please provide name`);
+    }
+
+    if (mail === undefined || mail === "") {
+      return res.status(400).send(`please provide gmail`);
+    }
+
+    if (password === undefined || password === "") {
+      return res.status(400).send(`please provide password`);
+    }
+
+    if (confirmPassword === undefined || confirmPassword === "") {
+      return res.status(400).send(`please provide confirm password`);
     }
 
     let existed = await Users.findOne({ mail });

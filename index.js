@@ -20,6 +20,10 @@ mongoose
   .connect("mongodb+srv://ganesh:ganesh@cluster7337.7exrzd7.mongodb.net/")
   .then(() => console.log("db connected..."));
 
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
+
 app.post("/signup", async (req, res) => {
   try {
     const { name, mail, password, confirmPassword } = req.body;

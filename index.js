@@ -74,6 +74,15 @@ app.post("/login", async (req, res) => {
   try {
     const { mail, password } = req.body;
 
+    if (
+      mail === undefined ||
+      mail === "" ||
+      password === undefined ||
+      password === ""
+    ) {
+      return res.status(400).send(`please provide gmail & password`);
+    }
+
     const existed = await Users.findOne({ mail });
 
     if (!existed) {

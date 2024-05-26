@@ -85,7 +85,7 @@ app.post("/login", async (req, res) => {
 
     const existed = await Users.findOne({ mail });
 
-    if (existed === undefined) {
+    if (existed === null) {
       return res.status(400).send("user not exist");
     } else {
       let passwordMatch = await bcrypt.compare(password, existed.password);
@@ -109,7 +109,7 @@ app.get("/user-details", authenticate, async (req, res) => {
   let { userId } = req;
   const user = await Users.findById(userId).select("-password");
   try {
-    if (user === undefined) {
+    if (user === null) {
       return res.status(400).send("user not exist");
     } else {
       res.send(user);
